@@ -1010,6 +1010,37 @@ Test.prototype.tests = {
         //stage.start();
 
     },
+    'NODE - clip shape': function(containerId) {
+        var stage = new Kinetic.Stage({
+            container: containerId,
+            width: 578,
+            height: 200
+        });
+        var layer = new Kinetic.Layer();
+        var rect = new Kinetic.Rect({
+            x: 100,
+            y: 100,
+            width: 100,
+            height: 50,
+            stroke: 'black',
+            strokeWidth: 4
+        });
+        var circle = new Kinetic.Circle({
+            x: 100,
+            y: 100,
+            radius: 50,
+            fill: 'green'
+        });
+
+        test(rect.clip === false, 'default should be false');
+        rect.setClip(true);
+        test(rect.clip === true, 'now it should be true');
+
+        layer.add(circle);
+        layer.add(rect);
+        stage.add(layer);
+        //stage.start();
+    },
     'STAGE - add layer then shape': function(containerId) {
         var stage = new Kinetic.Stage({
             container: containerId,
@@ -1100,7 +1131,7 @@ Test.prototype.tests = {
         group.add(rect);
         layer.add(group);
         stage.add(layer);
-        
+
         // test absolute positions
         test(rect.getAbsolutePosition().x == 180, 'rect should be at x = 180');
         test(rect.getAbsolutePosition().y == 100, 'rect should be at y = 100');

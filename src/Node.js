@@ -28,6 +28,7 @@ Kinetic.Node = function(config) {
     this.dragConstraint = 'none';
     this.dragBounds = {};
     this._draggable = false;
+    this.clip = false;
 
     // set properties from config
     if(config) {
@@ -350,6 +351,13 @@ Kinetic.Node.prototype = {
     isDragging: function() {
         var go = Kinetic.GlobalObject;
         return go.drag.node !== undefined && go.drag.node.id === this.id && go.drag.moving;
+    },
+    /**
+     * set clipping
+     * @param {Boolean} clippable
+     */
+    setClip: function(clippable) {
+        this.clip = clippable;
     },
     /**
      * move node to another container

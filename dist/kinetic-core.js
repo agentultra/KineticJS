@@ -3,7 +3,7 @@
  * http://www.kineticjs.com/
  * Copyright 2012, Eric Rowell
  * Licensed under the MIT or GPL Version 2 licenses.
- * Date: Mar 25 2012
+ * Date: Mar 26 2012
  *
  * Copyright (C) 2011 - 2012 by Eric Rowell
  *
@@ -275,6 +275,7 @@ Kinetic.Node = function(config) {
     this.dragConstraint = 'none';
     this.dragBounds = {};
     this._draggable = false;
+    this.clip = false;
 
     // set properties from config
     if(config) {
@@ -597,6 +598,13 @@ Kinetic.Node.prototype = {
     isDragging: function() {
         var go = Kinetic.GlobalObject;
         return go.drag.node !== undefined && go.drag.node.id === this.id && go.drag.moving;
+    },
+    /**
+     * set clipping
+     * @param {Boolean} clippable
+     */
+    setClip: function(clippable) {
+        this.clip = clippable;
     },
     /**
      * move node to another container
